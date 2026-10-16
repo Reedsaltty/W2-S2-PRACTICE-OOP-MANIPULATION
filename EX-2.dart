@@ -3,12 +3,18 @@ class BankAccount {
   final int _accountId;
   final String accountOwner;
   double _balance;
+
+
+
   BankAccount._({
     required int givenId,
     required this.accountOwner,
     required double Amount,
   }) : _balance = Amount,
        _accountId = givenId;
+
+
+
 
   double get balance =>  _balance;
 
@@ -25,6 +31,8 @@ class BankAccount {
   }
 
   String get accountTag => accountOwner;
+
+  int get accountId => _accountId ;
 }
 
 class Bank {
@@ -34,18 +42,23 @@ class Bank {
 
   Bank({required this.name}) : _accountList = [];
 
+
+
   BankAccount createAccount(
     int InputId ,
     String InputName,
     [double? InputBalance]
-  ) {
+  ) 
+  
+  
+  {
     BankAccount newAccount = BankAccount._(
       givenId: InputId,
       accountOwner: InputName,
       Amount: InputBalance ?? 0.0 ,
     );
     for (var acc in _accountList) {
-      if (InputId == acc._accountId)
+      if (InputId == acc.accountId)
         throw Exception("Account with ID $InputId already exists");
     }
     _accountList.add(newAccount);
@@ -53,20 +66,25 @@ class Bank {
     return newAccount;
   }
 
-  void accountInList() {
-    _accountList.forEach(
-      (acc) => print('''
-_________________________________________________________________
-    AccountId: ${acc._accountId} 
-    Owner: ${acc.accountOwner}
-    Balance: ${acc.balance}
-_________________________________________________________________
-'''),
-    );
-  }
+
+
+
+//   void accountInList() {
+//     _accountList.forEach(
+//       (acc) => print('''
+// _________________________________________________________________
+//     AccountId: ${acc._accountId} 
+//     Owner: ${acc.accountOwner}
+//     Balance: ${acc.balance}
+// _________________________________________________________________
+// '''),
+//     );
+//   }
 }
 
 void main() {
+
+
   Bank myBank = Bank(name: "CADT Bank");
   BankAccount ronanAccount = myBank.createAccount(100, 'Ronan');
 

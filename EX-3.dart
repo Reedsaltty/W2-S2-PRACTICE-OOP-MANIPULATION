@@ -14,8 +14,7 @@ class MyDuration {
     : assert(seconds >= 0, "Input duration must be positive "),
       _milliseconds = seconds * 1000;
 
-  MyDuration operator +(MyDuration other) =>
-      MyDuration(_milliseconds + other._milliseconds);
+  MyDuration operator +(MyDuration other) => MyDuration(_milliseconds + other._milliseconds);
   bool operator >(MyDuration other) => _milliseconds > other._milliseconds;
   bool operator <(MyDuration other) => _milliseconds < other._milliseconds;
   MyDuration operator -(MyDuration other) {
